@@ -2,6 +2,7 @@
 
 use Cornford\Logical\Contracts\LogicalStatementInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 abstract class LogicalAbstract {
 
@@ -15,7 +16,7 @@ abstract class LogicalAbstract {
 	/**
 	 * Property accessor instance
 	 *
-	 * @var \Symfony\Component\PropertyAccess\PropertyAccess
+	 * @var \Symfony\Component\PropertyAccess\PropertyAccessor
 	 */
 	protected static $propertyAccessorInstance;
 
@@ -92,7 +93,7 @@ abstract class LogicalAbstract {
 	/**
 	 * Get the property accessor instance
 	 *
-	 * @return \Symfony\Component\PropertyAccess\PropertyAccess
+	 * @return PropertyAccessor
 	 */
 	protected function getPropertyAccessorInstance()
 	{
@@ -136,7 +137,7 @@ abstract class LogicalAbstract {
 	/**
 	 * Get the logic value
 	 *
-	 * @return array
+	 * @return string
 	 */
 	public function getLogic()
 	{

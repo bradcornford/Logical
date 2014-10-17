@@ -5,8 +5,19 @@ use Mockery;
 
 class LogicalSpec extends ObjectBehavior {
 
+	protected $visiblePropertiesClass;
+	protected $getterPropertiesClass;
+
 	function let()
 	{
+		$visiblePropertiesClass = Mockery::mock('visibleProperties');
+		$this->visiblePropertiesClass = $visiblePropertiesClass;
+
+		$getterPropertiesClass = Mockery::mock('getterProperties');
+		$getterPropertiesClass->name = "tom";
+		$getterPropertiesClass->shouldReceive('getName')->andReturn($getterPropertiesClass->name);
+		$this->getterPropertiesClass = $getterPropertiesClass;
+
 		$logicalStatement = Mockery::mock('Cornford\Logical\LogicalStatement');
 		$logicalStatement->shouldReceive('equals')->andReturn(true);
 		$logicalStatement->shouldReceive('customStatementExists')->andReturn(false);
@@ -43,18 +54,37 @@ class LogicalSpec extends ObjectBehavior {
 		$this->getLogic()->shouldReturn($input);
 	}
 
-	function it_should_decode_a_logic_string()
+	function it_should_throw_an_exception_when_unable_to_decode_logic()
 	{
 		$input = [
 			['name' => 'tom']
 		];
+		$logic = 'thisisntlogic';
+		$this->setInput($input);
+		$this->setLogic($logic);
+		$this->shouldThrow('\Cornford\Logical\Exceptions\LogicalDecodingException')->during('execute');
+	}
+
+	function it_should_throw_an_exception_when_unable_to_find_a_field_value()
+	{
+		$input = [
+			['notname' => 'tom']
+		];
 		$logic = 'where("name").equals("tom")';
 		$this->setInput($input);
 		$this->setLogic($logic);
-		$this->execute()->shouldReturn($this);
-		$this->getDecodedLogicStatements()->shouldReturn(
-			[[['method' => "equals", 'expected' => "tom", 'field' => "name"]]]
-		);
+		$this->shouldThrow('\Cornford\Logical\Exceptions\LogicalFieldValueException')->during('execute');
+	}
+
+	function it_should_throw_an_exception_when_unable_to_execute_logic_statement()
+	{
+		$input = [
+			['name' => 'tom']
+		];
+		$logic = 'where("name").something("tom")';
+		$this->setInput($input);
+		$this->setLogic($logic);
+		$this->shouldThrow('\Cornford\Logical\Exceptions\LogicalExecutionException')->during('execute');
 	}
 
 	function it_should_execute_the_decoded_logic_statements_on_an_array()
@@ -77,6 +107,50 @@ class LogicalSpec extends ObjectBehavior {
 		];
 		$output = [
 			['name' => 'tom']
+		];
+		$logic = 'where("name").equals("tom")';
+		$this->setInput($input);
+		$this->setLogic($logic);
+		$this->execute()->shouldReturn($this);
+		$this->getResults()->shouldReturn($input);
+	}
+
+	function it_should_execute_the_decoded_logic_statements_removing_invalid_results_on_a_class_with_visible_properties()
+	{
+		$input1 = $this->visiblePropertiesClass;
+		$input1->name = "tom";
+
+		$input2 = $this->visiblePropertiesClass;
+		$input2->name = "paul";
+
+		$input = [
+			$input1,
+			$input2
+		];
+		$output = [
+			$input1,
+		];
+		$logic = 'where("name").equals("tom")';
+		$this->setInput($input);
+		$this->setLogic($logic);
+		$this->execute()->shouldReturn($this);
+		$this->getResults()->shouldReturn($input);
+	}
+
+	function it_should_execute_the_decoded_logic_statements_removing_invalid_results_on_a_class_with_getter_properties()
+	{
+		$input1 = $this->getterPropertiesClass;
+		$input1->name = "tom";
+
+		$input2 = $this->getterPropertiesClass;
+		$input2->name = "paul";
+
+		$input = [
+			$input1,
+			$input2
+		];
+		$output = [
+			$input1,
 		];
 		$logic = 'where("name").equals("tom")';
 		$this->setInput($input);

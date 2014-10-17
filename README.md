@@ -129,6 +129,106 @@ Below is a list of available logic statement string methods:
 - [Less Than Or Equal](#less-than-or-equal)
 - [Greater Than Or Equal](#greater-than-or-equal)
 
+### Equals
+
+The `equals` method returns true if the input value equals the expected value.
+
+	equals(1)
+
+The `notEquals` method returns true if the input value doesn't equals the expected value.
+
+	notEquals(1)
+
+### Is
+
+The `is` method returns true if the input value is the same type the expected value.
+
+	is("boolean")
+
+The `isNot` method returns true if the input value isn't the same type the expected value.
+
+	isNot("boolean")
+
+### Contains
+
+The `contains` method returns true if the input value contains the expected value.
+
+	contains("o")
+
+The `notContains` method returns true if the input value doesn't contain the expected value.
+
+	notContains("o")
+
+### In
+
+The `in` method returns true if the input value is an item of the expected values.
+
+	in("a", "b", "c")
+
+The `notIn` method returns true if the input value is not an item of the expected values.
+
+	notIn("a", "b", "c")
+
+### Between
+
+The `between` method returns true if the input value is between the expected values.
+
+	between(1, 10)
+
+The `notBetween` method returns true if the input value is not between the expected values.
+
+	notBetween(1, 10)
+
+### Null
+
+The `null` method returns true if the input value is null.
+
+	null()
+
+The `notNull` method returns true if the input value is not null.
+
+	notNull()
+
+### Less Than
+
+The `lessThan` method returns true if the input value is less than the expected value.
+
+	lessThan(10)
+
+The `notLessThan` method returns true if the input value is not less than the expected value.
+
+	notLessThan(10)
+
+### Greater Than
+
+The `greaterThan` method returns true if the input value is greater than the expected value.
+
+	greaterThan(10)
+
+The `notGreaterThan` method returns true if the input value is not greater than the expected value.
+
+	notGreaterThan(10)
+
+### Less Than Or Equal
+
+The `lessThanOrEqual` method returns true if the input value is less than or equal to the expected value.
+
+	lessThanOrEqual(10)
+
+The `notLessThanOrEqual` method returns true if the input value is not less than or not equal to the expected value.
+
+	notLessThanOrEqual(10)
+
+### Greater Than Or Equal
+
+The `greaterThanOrEqual` method returns true if the input value is greater than or equal to the expected value.
+
+	greaterThanOrEqual(10)
+
+The `notGreaterThanOrEqual` method returns true if the input value is not greater than or not equal to the expected value.
+
+	notGreaterThanOrEqual(10)
+
 ### License
 
 Logical is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
