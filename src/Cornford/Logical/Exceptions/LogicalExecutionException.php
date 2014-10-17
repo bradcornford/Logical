@@ -1,6 +1,6 @@
 <?php namespace Cornford\Logical\Exceptions;
 
-use Exception;
+use \Exception;
 
 class LogicalExecutionException extends Exception {
 

@@ -13,7 +13,7 @@ class LogicalFactory implements LogicalFactoryInterface {
 	 * @param array       $input
 	 * @param string|null $logic
 	 *
-	 * @return Logical
+	 * @return \Cornford\Logical\Contracts\LogicalInterface
 	 */
 	public function build(
 		array $input = [],
@@ -31,7 +31,7 @@ class LogicalFactory implements LogicalFactoryInterface {
 	 * @param string|null               $logic
 	 * @param LogicalStatementInterface $logicStatement
 	 *
-	 * @return Logical
+	 * @return \Cornford\Logical\Contracts\LogicalInterface
 	 */
 	public function buildLogical(
 		array $input = [],
@@ -44,7 +44,7 @@ class LogicalFactory implements LogicalFactoryInterface {
 	/**
 	 * Build a new Logical Statement object
 	 *
-	 * @return LogicalStatement
+	 * @return \Cornford\Logical\Contracts\LogicalStatementInterface
 	 */
 	public function buildLogicalStatement()
 	{

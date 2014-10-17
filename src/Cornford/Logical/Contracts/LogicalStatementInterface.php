@@ -8,7 +8,7 @@ interface LogicalStatementInterface {
 	 * @param string   $name     The statement name
 	 * @param callable $callback The callback method to execute
 	 *
-	 * @return boolean
+	 * @return void
 	 */
 	public function defineCustomStatement($name, callable $callback);
 
@@ -31,9 +31,9 @@ interface LogicalStatementInterface {
 	/**
 	 * Define a custom logical statement
 	 *
-	 * @param string $name     The statement name
-	 * @param string $input    The input value
-	 * @param string $expected The expected type
+	 * @param string                 $name     The statement name
+	 * @param string|integer|boolean $input    The input value
+	 * @param string|integer|boolean $expected The expected type
 	 *
 	 * @return boolean
 	 */

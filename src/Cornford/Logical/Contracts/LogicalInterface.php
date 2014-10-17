@@ -61,7 +61,7 @@ interface LogicalInterface {
 	/**
 	 * Get the logic value
 	 *
-	 * @return array
+	 * @return string
 	 */
 	public function getLogic();
 

@@ -1,8 +1,10 @@
 <?php namespace Cornford\Logical;
 
 use Cornford\Logical\Contracts\LogicalInterface;
+use Cornford\Logical\Exceptions\LogicalDecodingException;
 use Cornford\Logical\Exceptions\LogicalExecutionException;
 use Cornford\Logical\Exceptions\LogicalFieldValueException;
+use Exception;
 
 class Logical extends LogicalAbstract implements LogicalInterface {
 
@@ -23,7 +25,7 @@ class Logical extends LogicalAbstract implements LogicalInterface {
 	/**
 	 * The temporary logic expected
 	 *
-	 * @var string
+	 * @var string|array
 	 */
 	protected $tempExpected;
 
@@ -37,7 +39,7 @@ class Logical extends LogicalAbstract implements LogicalInterface {
 	/**
 	 * The temporary results
 	 *
-	 * @var string
+	 * @var array
 	 */
 	protected $tempResults;
 
@@ -97,7 +99,7 @@ class Logical extends LogicalAbstract implements LogicalInterface {
 	 * Execute a logic statement method on an input value against an expected value
 	 *
 	 * @param string                 $method
-	 * @param object|array           $input
+	 * @param string|integer|boolean $input
 	 * @param string|integer|boolean $expected
 	 *
 	 * @throws LogicalExecutionException
@@ -148,7 +150,7 @@ class Logical extends LogicalAbstract implements LogicalInterface {
 							break;
 						case 'array':
 						default:
-						$andStatement['field'] = '[' . $andStatement['field'] . ']';
+							$andStatement['field'] = '[' . $andStatement['field'] . ']';
 					}
 
 					try {
