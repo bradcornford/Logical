@@ -159,6 +159,10 @@ class Logical extends LogicalAbstract implements LogicalInterface {
 						throw new LogicalFieldValueException('Unable to locate logical statement field value.');
 					}
 
+					if (!isset($value)) {
+						throw new LogicalFieldValueException('Unable to locate logical statement field value.');
+					}
+
 					if (!$this->executeLogicStatement($andStatement['method'], $value, $andStatement['expected'])) {
 						unset($this->tempResults[$key]);
 					}
