@@ -56,27 +56,26 @@ class Logical extends LogicalAbstract implements LogicalInterface {
 			$andStatements = preg_split("/.AND./", $orStatement);
 
 			foreach ($andStatements as $andStatement) {
-				$items = preg_split("/\./", $andStatement);
+				$items = preg_split("/\./", $andStatement, 2);
 				$decodedStatement = [];
 
 				foreach ($items as $item) {
 					$matches = null;
-
 					if (stristr($item, 'where')) {
 						if (!preg_match("/\((.*)\)/", $item, $matches)) {
 							return false;
 						}
 
-						$this->tempField = str_replace('"', '', $matches[1]);
+						$this->tempField = trim(trim($matches[1], '\''), '"');
 
 						continue;
 					}
 
-					if (!preg_match("/(.*)\((.*)\)/", $item, $matches)) {
+					if (!preg_match("/(.*)\(([\'\"]*.*[\'\"]*)\)/", $item, $matches)) {
 						return false;
 					} else {
-						$this->tempMethod = str_replace('"', '', $matches[1]);
-						$this->tempExpected = str_replace('"', '', $matches[2]);
+						$this->tempMethod = trim(trim($matches[1], '\''), '"');
+						$this->tempExpected = trim(trim($matches[2], '\''), '"');
 					}
 
 					if (stristr($this->tempExpected, ', ')) {
