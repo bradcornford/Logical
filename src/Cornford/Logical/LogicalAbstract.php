@@ -7,55 +7,53 @@ use Symfony\Component\PropertyAccess\PropertyAccessor;
 abstract class LogicalAbstract {
 
 	/**
-	 * Logical statement instance
+	 * Logical statement instance.
 	 *
 	 * @var \Cornford\Logical\Contracts\LogicalStatementInterface
 	 */
 	protected static $logicalStatementInstance;
 
 	/**
-	 * Property accessor instance
+	 * Property accessor instance.
 	 *
 	 * @var \Symfony\Component\PropertyAccess\PropertyAccessor
 	 */
 	protected static $propertyAccessorInstance;
 
 	/**
-	 * The input array
+	 * The input array.
 	 *
 	 * @var array
 	 */
 	protected $input = [];
 
 	/**
-	 * The logic string
+	 * The logic string.
 	 *
 	 * @var string
 	 */
 	protected $logic;
 
 	/**
-	 * The decoded logic statements
+	 * The decoded logic statements.
 	 *
 	 * @var array
 	 */
 	protected $decodedLogicStatements = [];
 
 	/**
-	 * The output results
+	 * The output results.
 	 *
 	 * @var array
 	 */
 	protected $results = [];
 
 	/**
-	 * Construct Logical object
+	 * Construct Logical object.
 	 *
 	 * @param array                     $input
 	 * @param string|null               $logic
 	 * @param LogicalStatementInterface $logicalStatement
-	 *
-	 * @return self
 	 */
 	public function __construct(
 		array $input = [],
@@ -69,7 +67,7 @@ abstract class LogicalAbstract {
 	}
 
 	/**
-	 * Set the logical statement instance
+	 * Set the logical statement instance.
 	 *
 	 * @param LogicalStatementInterface $value
 	 *
@@ -81,7 +79,7 @@ abstract class LogicalAbstract {
 	}
 
 	/**
-	 * Get the logic statement instance
+	 * Get the logic statement instance.
 	 *
 	 * @return LogicalStatementInterface
 	 */
@@ -91,7 +89,7 @@ abstract class LogicalAbstract {
 	}
 
 	/**
-	 * Get the property accessor instance
+	 * Get the property accessor instance.
 	 *
 	 * @return PropertyAccessor
 	 */
@@ -101,7 +99,7 @@ abstract class LogicalAbstract {
 	}
 
 	/**
-	 * Set the input value
+	 * Set the input value.
 	 *
 	 * @param array $value
 	 *
@@ -113,7 +111,7 @@ abstract class LogicalAbstract {
 	}
 
 	/**
-	 * Get the input value
+	 * Get the input value.
 	 *
 	 * @return array
 	 */
@@ -123,7 +121,7 @@ abstract class LogicalAbstract {
 	}
 
 	/**
-	 * Set the logic value
+	 * Set the logic value.
 	 *
 	 * @param string $value
 	 *
@@ -135,7 +133,7 @@ abstract class LogicalAbstract {
 	}
 
 	/**
-	 * Get the logic value
+	 * Get the logic value.
 	 *
 	 * @return string
 	 */
@@ -145,7 +143,7 @@ abstract class LogicalAbstract {
 	}
 
 	/**
-	 * Set a decoded logic statements value
+	 * Set a decoded logic statements value.
 	 *
 	 * @param array $value
 	 *
@@ -157,7 +155,7 @@ abstract class LogicalAbstract {
 	}
 
 	/**
-	 * Set a decoded logic statement value
+	 * Set a decoded logic statement value.
 	 *
 	 * @param array $value
 	 *
@@ -173,7 +171,7 @@ abstract class LogicalAbstract {
 	}
 
 	/**
-	 * Get the decoded logic statements value
+	 * Get the decoded logic statements value.
 	 *
 	 * @return array
 	 */
@@ -183,7 +181,7 @@ abstract class LogicalAbstract {
 	}
 
 	/**
-	 * Set the results value
+	 * Set the results value.
 	 *
 	 * @param array $value
 	 *
@@ -195,7 +193,7 @@ abstract class LogicalAbstract {
 	}
 
 	/**
-	 * Merge the results value with an input results value
+	 * Merge the results value with an input results value.
 	 *
 	 * @param array $value
 	 *
@@ -206,18 +204,38 @@ abstract class LogicalAbstract {
 		foreach ($value as $key => $result) {
 			if (!array_key_exists($key, $this->results)) {
 				$this->results[$key] = $result;
+			} else {
+				if (!in_array($result, $this->results)) {
+					if (gettype($result) != $this->results[$key]) {
+						$this->results[] = $result;
+					}
+				}
 			}
 		}
 	}
 
 	/**
-	 * Get the results value
+	 * Get the results value.
 	 *
 	 * @return array
 	 */
 	public function getResults()
 	{
 		return $this->results;
+	}
+
+	/**
+	 * Reset items.
+	 *
+	 * @return self
+	 */
+	public function reset()
+	{
+		$this->input = [];
+		$this->logic = null;
+		$this->results = [];
+
+		return $this;
 	}
 
 }

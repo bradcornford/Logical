@@ -9,47 +9,51 @@ use Exception;
 class Logical extends LogicalAbstract implements LogicalInterface {
 
 	/**
-	 * The temporary logic method
+	 * The temporary logic method.
 	 *
 	 * @var string
 	 */
 	protected $tempLogic;
 
 	/**
-	 * The temporary logic method
+	 * The temporary logic method.
 	 *
 	 * @var string
 	 */
 	protected $tempMethod;
 
 	/**
-	 * The temporary logic expected
+	 * The temporary logic expected.
 	 *
 	 * @var string|array
 	 */
 	protected $tempExpected;
 
 	/**
-	 * The temporary logic field
+	 * The temporary logic field.
 	 *
 	 * @var string
 	 */
 	protected $tempField;
 
 	/**
-	 * The temporary results
+	 * The temporary results.
 	 *
 	 * @var array
 	 */
 	protected $tempResults;
 
 	/**
-	 * Decode the logic string into an array of logical statements
+	 * Decode the logic string into an array of logical statements.
 	 *
 	 * @return boolean
 	 */
 	protected function decodeLogicStatements()
 	{
+		if (!$this->getLogic()) {
+			return true;
+		}
+
 		$orStatements = preg_split("/.OR./", $this->getLogic());
 
 		foreach ($orStatements as $orKey => $orStatement) {
@@ -95,7 +99,7 @@ class Logical extends LogicalAbstract implements LogicalInterface {
 	}
 
 	/**
-	 * Execute a logic statement method on an input value against an expected value
+	 * Execute a logic statement method on an input value against an expected value.
 	 *
 	 * @param string                 $method
 	 * @param string|integer|boolean $input
@@ -126,7 +130,7 @@ class Logical extends LogicalAbstract implements LogicalInterface {
 	}
 
 	/**
-	 * Decodes logic input into statements and executes each statement removing un-matching results
+	 * Decodes logic input into statements and executes each statement removing un-matching results.
 	 *
 	 * @throws LogicalDecodingException
 	 * @throws LogicalFieldValueException

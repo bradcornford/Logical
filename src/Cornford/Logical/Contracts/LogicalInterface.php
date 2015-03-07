@@ -1,5 +1,7 @@
 <?php namespace Cornford\Logical\Contracts;
 
+use Exception;
+
 interface LogicalInterface {
 
 	/**
@@ -8,8 +10,6 @@ interface LogicalInterface {
 	 * @param array                     $input
 	 * @param string|null               $logic
 	 * @param LogicalStatementInterface $logicalStatement
-	 *
-	 * @return self
 	 */
 	public function __construct(
 		array $input = [],
@@ -65,13 +65,19 @@ interface LogicalInterface {
 	 */
 	public function getLogic();
 
-
 	/**
 	 * Get the results value
 	 *
 	 * @return array
 	 */
 	public function getResults();
+
+	/**
+	 * Reset items.
+	 *
+	 * @return self
+	 */
+	public function reset();
 
 	/**
 	 * Decodes logic input into statements and executes each statement removing un-matching results

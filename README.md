@@ -15,6 +15,7 @@ Think of Logical as an easy way to execute logical statements over a none persis
 - `Logical::getLogic`
 - `Logical::execute`
 - `Logical::getResults`
+- `Logical::reset`
 
 ## Installation
 
@@ -54,6 +55,7 @@ This will give you access to
 - [Get Logic](#get-logic)
 - [Execute](#execute)
 - [Get Results](#get-results)
+- [Reset](#reset)
 
 ### Set Logical Statement Instance
 
@@ -104,6 +106,12 @@ The `execute` method decodes the logic string into callable methods and then exe
 The `getResults` method returns the items matching the logic statement sting from the input array set.
 
 	Logical::getResults();
+
+### Reset
+
+The `reset` method resets input, logic and results.
+
+	Logical::reset();
 
 ## Building Logic Statement Strings
 
