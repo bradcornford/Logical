@@ -66,24 +66,28 @@ class Logical extends LogicalAbstract implements LogicalInterface {
 				foreach ($items as $item) {
 					$matches = null;
 					if (stristr($item, 'where')) {
-						if (!preg_match("/\((.*)\)/", $item, $matches)) {
+						if (!preg_match("/\((?<field>.*)\)/", $item, $matches)) {
 							return false;
 						}
 
-						$this->tempField = trim(trim($matches[1], '\''), '"');
+						$this->tempField = trim(trim($matches['field'], '\''), '"');
 
 						continue;
 					}
 
-					if (!preg_match("/(.*)\(([\'\"]*.*[\'\"]*)\)/", $item, $matches)) {
+					if (!preg_match("/^(?<method>[a-zA-Z]{1,})\((?<expected>[\'\"]*.*[\'\"]*)\)/", $item, $matches)) {
 						return false;
 					} else {
-						$this->tempMethod = trim(trim($matches[1], '\''), '"');
-						$this->tempExpected = trim(trim($matches[2], '\''), '"');
+						$this->tempMethod = trim(trim($matches['method'], '\''), '"');
+						$this->tempExpected = trim(trim($matches['expected'], '\''), '"');
 					}
 
-					if (stristr($this->tempExpected, ', ')) {
+					if (stristr($this->tempExpected, ',') && !stristr($this->tempExpected, '{') && !stristr($this->tempExpected, '}')) {
 						$this->tempExpected = explode(', ', $this->tempExpected);
+					}
+
+					if (stristr($this->tempExpected, '{') && stristr($this->tempExpected, '}')) {
+						$this->tempExpected = eval(str_replace('{', 'print_r(', str_replace('}', ', true);', $this->tempExpected)));
 					}
 
 					$decodedStatement[$orKey]['method'] = $this->tempMethod;
