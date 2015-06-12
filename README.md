@@ -5,7 +5,9 @@
 [![Build Status](https://travis-ci.org/bradcornford/Logical.svg?branch=master)](https://travis-ci.org/bradcornford/Logical)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bradcornford/Logical/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/bradcornford/Logical/?branch=master)
 
-Think of Logical as an easy way to execute logical statements over a none persisted results set with Laravel 4, providing a way to reduce a results set against a logical sentence. These include:
+### For Laravel 4.x, check [version 1.2.0](https://github.com/bradcornford/Logical/tree/v1.2.0)
+
+Think of Logical as an easy way to execute logical statements over a none persisted results set with Laravel, providing a way to reduce a results set against a logical sentence. These include:
 
 - `Logical::setLogicalStatementInstance`
 - `Logical::getLogicalStatementInstance`
@@ -22,7 +24,7 @@ Think of Logical as an easy way to execute logical statements over a none persis
 Begin by installing this package through Composer. Edit your project's `composer.json` file to require `cornford/logical`.
 
 	"require": {
-		"cornford/logical": "1.*"
+		"cornford/logical": "2.*"
 	}
 
 Next, update Composer from the Terminal:
