@@ -234,6 +234,7 @@ abstract class LogicalAbstract {
 		$this->input = [];
 		$this->logic = null;
 		$this->results = [];
+		$this->decodedLogicStatements = [];	
 
 		return $this;
 	}
