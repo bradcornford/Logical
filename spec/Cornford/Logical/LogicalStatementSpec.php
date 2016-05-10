@@ -43,6 +43,20 @@ class LogicalStatementSpec extends ObjectBehavior {
 		$this->notEquals($input, $expected)->shouldReturn(true);
 	}
 
+	function it_can_execute_an_is_length_statement()
+	{
+		$input = 'name';
+		$expected = 4;
+		$this->isLength($input, $expected)->shouldReturn(true);
+	}
+
+	function it_can_execute_a_is_not_length_statement()
+	{
+		$input = 'name';
+		$expected = 5;
+		$this->isNotLength($input, $expected)->shouldReturn(true);
+	}
+
 	function it_can_execute_an_is_statement()
 	{
 		$input = 'name';
@@ -55,6 +69,34 @@ class LogicalStatementSpec extends ObjectBehavior {
 		$input = 'name';
 		$expected = 'boolean';
 		$this->isNot($input, $expected)->shouldReturn(true);
+	}
+
+	function it_can_execute_a_contains_statement()
+	{
+		$input = 'name';
+		$expected = 'a';
+		$this->contains($input, $expected)->shouldReturn(true);
+	}
+
+	function it_can_execute_a_not_contains_statement()
+	{
+		$input = 'name';
+		$expected = 'b';
+		$this->notContains($input, $expected)->shouldReturn(true);
+	}
+
+	function it_can_execute_a_contained_in_statement()
+	{
+		$input = 'name';
+		$expected = ['a', 'b', 'c'];
+		$this->containedIn($input, $expected)->shouldReturn(true);
+	}
+
+	function it_can_execute_a_not_contained_in_statement()
+	{
+		$input = 'name';
+		$expected = ['b', 'c', 'd'];
+		$this->notContainedIn($input, $expected)->shouldReturn(true);
 	}
 
 	function it_can_execute_an_in_statement()

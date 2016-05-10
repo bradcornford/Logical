@@ -129,8 +129,10 @@ Logic statement strings are built by defining as follows:
 Below is a list of available logic statement string methods:
 
 - [Equals](#equals)
+- [Is Length](#is-length)
 - [Is](#is)
 - [Contains](#contains)
+- [Contained In](#contained-in)
 - [In](#in)
 - [Between](#between)
 - [Null](#null)
@@ -148,6 +150,16 @@ The `equals` method returns true if the input value equals the expected value.
 The `notEquals` method returns true if the input value doesn't equals the expected value.
 
 	notEquals(1)
+
+### Is Length
+
+The `isLength` method returns true if the input value equals the expected length value.
+
+	isLength(1)
+
+The `isNotLength` method returns true if the input value doesn't equals the expected length value.
+
+	isNotLength(1)
 
 ### Is
 
@@ -168,6 +180,16 @@ The `contains` method returns true if the input value contains the expected valu
 The `notContains` method returns true if the input value doesn't contain the expected value.
 
 	notContains("o")
+
+### Contained In
+
+The `containedIn` method returns true if the input value contains an item of the expected values.
+
+	containedIn("a", "b", "c")
+
+The `notContainedIn` method returns true if the input value doesn't contain an item of the expected values.
+
+	notContainedIn("a", "b", "c")
 
 ### In
 
