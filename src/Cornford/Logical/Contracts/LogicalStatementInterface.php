@@ -59,6 +59,28 @@ interface LogicalStatementInterface {
 	 */
 	public function notEquals($input, $expected);
 
+
+
+	/**
+	 * The input value has is the same length as the expected value
+	 *
+	 * @param string  $input The input value
+	 * @param integer $expected The expected length value
+	 *
+	 * @return boolean
+	 */
+	public function isLength($input, $expected);
+
+	/**
+	 * The input value isn't the same length as the expected value
+	 *
+	 * @param string $input The input value
+	 * @param integer $expected The expected length value
+	 *
+	 * @return boolean
+	 */
+	public function isNotLength($input, $expected);
+
 	/**
 	 * The input value is of the expected type
 	 *
@@ -100,10 +122,30 @@ interface LogicalStatementInterface {
 	public function notContains($input, $expected);
 
 	/**
+	 * The input value is contained in the expected value array
+	 *
+	 * @param string $input The input value
+	 * @param array  $expected The expected value array
+	 *
+	 * @return boolean
+	 */
+	public function containedIn($input, $expected);
+
+	/**
+	 * The input value is not contained in the expected value array
+	 *
+	 * @param string $input The input value
+	 * @param array  $expected The expected value array
+	 *
+	 * @return boolean
+	 */
+	public function notContainedIn($input, $expected);
+
+	/**
 	 * The input value is in the expected value array
 	 *
 	 * @param string $input The input value
-	 * @param array $expected The expected value array
+	 * @param array  $expected The expected value array
 	 *
 	 * @return boolean
 	 */
@@ -113,7 +155,7 @@ interface LogicalStatementInterface {
 	 * The input value is not in the expected value array
 	 *
 	 * @param string $input The input value
-	 * @param array $expected The expected value array
+	 * @param array  $expected The expected value array
 	 *
 	 * @return boolean
 	 */
@@ -123,7 +165,7 @@ interface LogicalStatementInterface {
 	 * The input value is between expected values
 	 *
 	 * @param string $input The input value
-	 * @param array $expected The expected values
+	 * @param array  $expected The expected values
 	 *
 	 * @return boolean
 	 */
@@ -133,7 +175,7 @@ interface LogicalStatementInterface {
 	 * The input value is not between the expected values
 	 *
 	 * @param string $input The input value
-	 * @param array $expected The expected values
+	 * @param array  $expected The expected values
 	 *
 	 * @return boolean
 	 */
