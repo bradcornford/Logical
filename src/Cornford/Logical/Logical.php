@@ -84,10 +84,22 @@ class Logical extends LogicalAbstract implements LogicalInterface {
 
 					if (stristr($this->tempExpected, ',') && !stristr($this->tempExpected, '{') && !stristr($this->tempExpected, '}')) {
 						$this->tempExpected = explode(', ', $this->tempExpected);
+
+						if (is_array($this->tempExpected)) {
+							foreach ($this->tempExpected as &$expected) {
+								$expected = trim(trim($expected, '\''), '"');
+							}
+						}
 					}
 
-					if (stristr($this->tempExpected, '{') && stristr($this->tempExpected, '}')) {
+					if (!is_array($this->tempExpected) && stristr($this->tempExpected, '{') && stristr($this->tempExpected, '}')) {
 						$this->tempExpected = eval(str_replace('{', 'print_r(', str_replace('}', ', true);', $this->tempExpected)));
+					} elseif(is_array($this->tempExpected)) {
+						foreach ($this->tempExpected as &$expected) {
+							if (stristr($expected, '{') && stristr($expected, '}')) {
+								$expected = eval(str_replace('{', 'print_r(', str_replace('}', ', true);', $expected)));
+							}
+						}
 					}
 
 					$decodedStatement[$orKey]['method'] = $this->tempMethod;
