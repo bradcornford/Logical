@@ -93,11 +93,11 @@ class Logical extends LogicalAbstract implements LogicalInterface {
 					}
 
 					if (!is_array($this->tempExpected) && stristr($this->tempExpected, '{') && stristr($this->tempExpected, '}')) {
-						$this->tempExpected = eval(str_replace('{', 'print_r(', str_replace('}', ', true);', $this->tempExpected)));
+						$this->tempExpected = eval(str_replace('{', 'return (', str_replace('}', ');', $this->tempExpected)));
 					} elseif(is_array($this->tempExpected)) {
 						foreach ($this->tempExpected as &$expected) {
 							if (stristr($expected, '{') && stristr($expected, '}')) {
-								$expected = eval(str_replace('{', 'print_r(', str_replace('}', ', true);', $expected)));
+								$expected = eval(str_replace('{', 'return (', str_replace('}', ');', $expected)));
 							}
 						}
 					}
