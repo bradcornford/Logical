@@ -195,4 +195,32 @@ class LogicalStatementSpec extends ObjectBehavior {
 		$this->notGreaterThanOrEqual($input, $expected)->shouldReturn(true);
 	}
 
+	function it_can_execute_a_starts_with_statement()
+	{
+		$input = 'this is a string';
+		$expected = 'this';
+		$this->startsWith($input, $expected)->shouldReturn(true);
+	}
+
+	function it_can_execute_a_not_starts_with_statement()
+	{
+		$input = 'also this is a string';
+		$expected = 'this';
+		$this->notStartsWith($input, $expected)->shouldReturn(true);
+	}
+
+	function it_can_execute_a_ends_with_statement()
+	{
+		$input = 'this is a string';
+		$expected = 'string';
+		$this->endsWith($input, $expected)->shouldReturn(true);
+	}
+
+	function it_can_execute_a_not_ends_with_statement()
+	{
+		$input = 'this is a string also';
+		$expected = 'string';
+		$this->notEndsWith($input, $expected)->shouldReturn(true);
+	}
+
 }

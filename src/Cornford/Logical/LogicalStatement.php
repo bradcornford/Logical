@@ -429,4 +429,67 @@ class LogicalStatement implements LogicalStatementInterface {
 		return !$this->greaterThanOrEqual($input, $expected);
 	}
 
+	/**
+	 * The input value starts with the expected value
+	 *
+	 * @param string $input The input value
+	 * @param string $expected The expected value
+	 *
+	 * @return boolean
+	 */
+	public function startsWith($input, $expected)
+	{
+		$length = strlen($expected);
+
+		if ($length === 0) {
+			return true;
+		}
+
+		return (substr($input, 0, $length) === $expected);
+	}
+
+	/**
+	 * The input value doesn't start with the expected value
+	 *
+	 * @param string $input The input value
+	 * @param string $expected The expected value
+	 *
+	 * @return boolean
+	 */
+	public function notStartsWith($input, $expected)
+	{
+		return !$this->startsWith($input, $expected);
+	}
+
+	/**
+	 * The input value ends with the expected value
+	 *
+	 * @param string $input The input value
+	 * @param string $expected The expected value
+	 *
+	 * @return boolean
+	 */
+	public function endsWith($input, $expected)
+	{
+		$length = strlen($expected);
+
+		if ($length === 0) {
+			return true;
+		}
+
+		return (substr($input, -$length) === $expected);
+	}
+
+	/**
+	 * The input value doesn't end with the expected value
+	 *
+	 * @param string $input The input value
+	 * @param string $expected The expected value
+	 *
+	 * @return boolean
+	 */
+	public function notEndsWith($input, $expected)
+	{
+		return !$this->endsWith($input, $expected);
+	}
 }
