@@ -140,6 +140,8 @@ Below is a list of available logic statement string methods:
 - [Greater Than](#greater-than)
 - [Less Than Or Equal](#less-than-or-equal)
 - [Greater Than Or Equal](#greater-than-or-equal)
+- [Starts With](#starts-with)
+- [Ends With](#ends-with)
 
 ### Equals
 
@@ -260,6 +262,26 @@ The `greaterThanOrEqual` method returns true if the input value is greater than 
 The `notGreaterThanOrEqual` method returns true if the input value is not greater than or not equal to the expected value.
 
 	notGreaterThanOrEqual(10)
+
+### Starts With
+
+The `startsWith` method returns true if the input value starts with the expected value.
+
+	startsWith('hello')
+
+The `notStartsWith` method returns true if the input value doesn't start with the expected value.
+
+	notStartsWith('hello')
+
+### Ends With
+
+The `endsWith` method returns true if the input value ends with the expected value.
+
+	endsWith('goodbye')
+
+The `notEndsWith` method returns true if the input value doesn't end with the expected value.
+
+	notEndsWith('goodbye')
 
 ### License
 
