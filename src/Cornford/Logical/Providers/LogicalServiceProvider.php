@@ -29,10 +29,13 @@ class LogicalServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['logical'] = $this->app->share(function()
-		{
-			return (new LogicalFactory)->build();
-		});
+		$this->app->singleton(
+		    'logical',
+            function($app)
+            {
+                return (new LogicalFactory)->build();
+            }
+		);
 	}
 
 	/**
