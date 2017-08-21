@@ -445,7 +445,7 @@ class LogicalStatement implements LogicalStatementInterface {
 			return true;
 		}
 
-		return (substr($input, 0, $length) === $expected);
+		return (strcasecmp(substr($input, 0, $length), $expected) === 0);
 	}
 
 	/**
@@ -477,7 +477,7 @@ class LogicalStatement implements LogicalStatementInterface {
 			return true;
 		}
 
-		return (substr($input, -$length) === $expected);
+		return (strcasecmp(substr($input, -$length), $expected) === 0);
 	}
 
 	/**
