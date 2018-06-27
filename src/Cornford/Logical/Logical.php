@@ -5,6 +5,7 @@ use Cornford\Logical\Exceptions\LogicalDecodingException;
 use Cornford\Logical\Exceptions\LogicalExecutionException;
 use Cornford\Logical\Exceptions\LogicalFieldValueException;
 use Exception;
+use function GuzzleHttp\Psr7\str;
 
 class Logical extends LogicalAbstract implements LogicalInterface {
 
@@ -82,7 +83,13 @@ class Logical extends LogicalAbstract implements LogicalInterface {
 						$this->tempExpected = trim(trim($matches['expected'], '\''), '"');
 					}
 
-					if (stristr($this->tempExpected, ',') && !stristr($this->tempExpected, '{') && !stristr($this->tempExpected, '}')) {
+					if (!is_array($this->tempExpected) &&
+                        strpos($this->tempExpected, '[') !== 0 &&
+                        strpos($this->tempExpected, ']') !== (strlen($this->tempExpected) - 1) &&
+                        stristr($this->tempExpected, ',') &&
+                        !stristr($this->tempExpected, '{') &&
+                        !stristr($this->tempExpected, '}')
+                    ) {
 						$this->tempExpected = explode(', ', $this->tempExpected);
 
 						if (is_array($this->tempExpected)) {
@@ -92,7 +99,25 @@ class Logical extends LogicalAbstract implements LogicalInterface {
 						}
 					}
 
-					if (!is_array($this->tempExpected) && stristr($this->tempExpected, '{') && stristr($this->tempExpected, '}')) {
+                    if (!is_array($this->tempExpected) &&
+                        strpos($this->tempExpected, '[') === 0 &&
+                        strpos($this->tempExpected, ']') === (strlen($this->tempExpected) - 1) &&
+                        !stristr($this->tempExpected, '{') &&
+                        !stristr($this->tempExpected, '}')
+                    ) {
+                        $this->tempExpected = json_decode($this->tempExpected, false);
+
+                        if (is_array($this->tempExpected)) {
+                            foreach ($this->tempExpected as &$expected) {
+                                $expected = trim(trim($expected, '\''), '"');
+                            }
+                        }
+                    }
+
+					if (!is_array($this->tempExpected) &&
+                        stristr($this->tempExpected, '{') &&
+                        stristr($this->tempExpected, '}')
+                    ) {
 						$this->tempExpected = eval(str_replace('{', 'return (', str_replace('}', ');', $this->tempExpected)));
 					} elseif(is_array($this->tempExpected)) {
 						foreach ($this->tempExpected as &$expected) {
@@ -150,6 +175,7 @@ class Logical extends LogicalAbstract implements LogicalInterface {
 	 *
 	 * @throws LogicalDecodingException
 	 * @throws LogicalFieldValueException
+     * @throws LogicalExecutionException
 	 *
 	 * @return self
 	 */

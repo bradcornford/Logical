@@ -185,21 +185,21 @@ The `notContains` method returns true if the input value doesn't contain the exp
 
 The `containedIn` method returns true if the input value contains an item of the expected values.
 
-	containedIn("a", "b", "c")
+	containedIn(["a", "b", "c"])
 
 The `notContainedIn` method returns true if the input value doesn't contain an item of the expected values.
 
-	notContainedIn("a", "b", "c")
+	notContainedIn(["a", "b", "c"])
 
 ### In
 
 The `in` method returns true if the input value is an item of the expected values.
 
-	in("a", "b", "c")
+	in(["a", "b", "c"])
 
 The `notIn` method returns true if the input value is not an item of the expected values.
 
-	notIn("a", "b", "c")
+	notIn(["a", "b", "c"])
 
 ### Between
 

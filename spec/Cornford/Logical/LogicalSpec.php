@@ -20,6 +20,7 @@ class LogicalSpec extends ObjectBehavior {
 
 		$logicalStatement = Mockery::mock('Cornford\Logical\LogicalStatement');
 		$logicalStatement->shouldReceive('equals')->andReturn(true);
+		$logicalStatement->shouldReceive('in')->andReturn(true);
 		$logicalStatement->shouldReceive('greaterThanOrEqual')->andReturn(true);
 		$logicalStatement->shouldReceive('customStatementExists')->andReturn(false);
 
@@ -157,5 +158,31 @@ class LogicalSpec extends ObjectBehavior {
 		$this->execute()->shouldReturn($this);
 		$this->getResults()->shouldReturn($input);
 	}
+
+    function it_should_decode_a_php_string_to_an_array_and_evaluate()
+    {
+        $input = [
+            ['name' => 'tom'],
+            ['name' => 'paul'],
+        ];
+        $logic = 'where("name").in("tom", "paul")';
+        $this->setInput($input);
+        $this->setLogic($logic);
+        $this->execute()->shouldReturn($this);
+        $this->getResults()->shouldReturn($input);
+    }
+
+    function it_should_decode_a_bracketed_php_string_to_an_array_and_evaluate()
+    {
+        $input = [
+            ['name' => 'tom'],
+            ['name' => 'paul'],
+        ];
+        $logic = 'where("name").in(["tom", "paul"])';
+        $this->setInput($input);
+        $this->setLogic($logic);
+        $this->execute()->shouldReturn($this);
+        $this->getResults()->shouldReturn($input);
+    }
 
 }
