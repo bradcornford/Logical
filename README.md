@@ -5,7 +5,9 @@
 [![Build Status](https://travis-ci.org/bradcornford/Logical.svg?branch=master)](https://travis-ci.org/bradcornford/Logical)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bradcornford/Logical/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/bradcornford/Logical/?branch=master)
 
-### For Laravel 4.x, check [version 1.2.0](https://github.com/bradcornford/Logical/tree/v1.2.0)
+### For Laravel 5.x, check [version 2.6.0](https://github.com/bradcornford/Logical/tree/v2.6.0)
+
+### For Laravel 4.x, check [version 1.6.0](https://github.com/bradcornford/Logical/tree/v1.6.0)
 
 Think of Logical as an easy way to execute logical statements over a none persisted results set with Laravel, providing a way to reduce a results set against a logical sentence. These include:
 
@@ -23,21 +25,21 @@ Think of Logical as an easy way to execute logical statements over a none persis
 
 Begin by installing this package through Composer. Edit your project's `composer.json` file to require `cornford/logical`.
 
-	"require": {
-		"cornford/logical": "2.*"
-	}
+    "require": {
+        "cornford/logical": "2.*"
+    }
 
 Next, update Composer from the Terminal:
 
-	composer update
+    composer update
 
 Once this operation completes, the next step is to add the service provider. Open `app/config/app.php`, and add a new item to the providers array.
 
-	'Cornford\Logical\Providers\LogicalServiceProvider',
+    'Cornford\Logical\Providers\LogicalServiceProvider',
 
 The final step is to introduce the facade. Open `app/config/app.php`, and add a new item to the aliases array.
 
-	'Logical'         => 'Cornford\Logical\Facades\Logical',
+    'Logical'         => 'Cornford\Logical\Facades\Logical',
 
 That's it! You're all set to go.
 
@@ -63,57 +65,57 @@ This will give you access to
 
 The `setLogicalStatementInstance` method allows a custom Logical Statement Instance to be passed to after construction.
 
-	Logical::setLogicalStatementInstance(new LogicalStatement);
-	Logical::setLogicalStatementInstance(new MyLogicalStatement);
+    Logical::setLogicalStatementInstance(new LogicalStatement);
+    Logical::setLogicalStatementInstance(new MyLogicalStatement);
 
 ### Get Logical Statement Instance
 
 The `getLogicalStatementInstance` method returns the set Logical Statement Instance.
 
-	Logical::getLogicalStatementInstance();
-	Logical::getLogicalStatementInstance()->defineCustomStatement('test', function ($input, $expected) { return true; });
+    Logical::getLogicalStatementInstance();
+    Logical::getLogicalStatementInstance()->defineCustomStatement('test', function ($input, $expected) { return true; });
 
 ### Set Input
 
 The `setInput` method sets a input array set.
 
-	Logical::setInput([['name' => 'tom'], ['name' => 'jerry']]);
+    Logical::setInput([['name' => 'tom'], ['name' => 'jerry']]);
 
 ### Get Input
 
 The `getInput` method returns the set input array set.
 
-	Logical::getInput();
+    Logical::getInput();
 
 ### Set Logic
 
 The `setLogic` method allows a logic statement string to be set. The available logical methods are within the Logical Statement class.
 
-	Logical::setLogic('where("name").equals("tom")');
+    Logical::setLogic('where("name").equals("tom")');
 
 ### Get Logic
 
 The `getLogic` method returns the set logic statement string.
 
-	Logical::getLogic();
+    Logical::getLogic();
 
 ### Execute
 
 The `execute` method decodes the logic string into callable methods and then executes those methods against the input array.
 
-	Logical::execute();
+    Logical::execute();
 
 ### Get Results
 
 The `getResults` method returns the items matching the logic statement sting from the input array set.
 
-	Logical::getResults();
+    Logical::getResults();
 
 ### Reset
 
 The `reset` method resets input, logic and results.
 
-	Logical::reset();
+    Logical::reset();
 
 ## Building Logic Statement Strings
 
@@ -147,141 +149,141 @@ Below is a list of available logic statement string methods:
 
 The `equals` method returns true if the input value equals the expected value.
 
-	equals(1)
+    equals(1)
 
 The `notEquals` method returns true if the input value doesn't equals the expected value.
 
-	notEquals(1)
+    notEquals(1)
 
 ### Is Length
 
 The `isLength` method returns true if the input value equals the expected length value.
 
-	isLength(1)
+    isLength(1)
 
 The `isNotLength` method returns true if the input value doesn't equals the expected length value.
 
-	isNotLength(1)
+    isNotLength(1)
 
 ### Is
 
 The `is` method returns true if the input value is the same type the expected value.
 
-	is("boolean")
+    is("boolean")
 
 The `isNot` method returns true if the input value isn't the same type the expected value.
 
-	isNot("boolean")
+    isNot("boolean")
 
 ### Contains
 
 The `contains` method returns true if the input value contains the expected value.
 
-	contains("o")
+    contains("o")
 
 The `notContains` method returns true if the input value doesn't contain the expected value.
 
-	notContains("o")
+    notContains("o")
 
 ### Contained In
 
 The `containedIn` method returns true if the input value contains an item of the expected values.
 
-	containedIn(["a", "b", "c"])
+    containedIn(["a", "b", "c"])
 
 The `notContainedIn` method returns true if the input value doesn't contain an item of the expected values.
 
-	notContainedIn(["a", "b", "c"])
+    notContainedIn(["a", "b", "c"])
 
 ### In
 
 The `in` method returns true if the input value is an item of the expected values.
 
-	in(["a", "b", "c"])
+    in(["a", "b", "c"])
 
 The `notIn` method returns true if the input value is not an item of the expected values.
 
-	notIn(["a", "b", "c"])
+    notIn(["a", "b", "c"])
 
 ### Between
 
 The `between` method returns true if the input value is between the expected values.
 
-	between(1, 10)
+    between(1, 10)
 
 The `notBetween` method returns true if the input value is not between the expected values.
 
-	notBetween(1, 10)
+    notBetween(1, 10)
 
 ### Null
 
 The `null` method returns true if the input value is null.
 
-	null()
+    null()
 
 The `notNull` method returns true if the input value is not null.
 
-	notNull()
+    notNull()
 
 ### Less Than
 
 The `lessThan` method returns true if the input value is less than the expected value.
 
-	lessThan(10)
+    lessThan(10)
 
 The `notLessThan` method returns true if the input value is not less than the expected value.
 
-	notLessThan(10)
+    notLessThan(10)
 
 ### Greater Than
 
 The `greaterThan` method returns true if the input value is greater than the expected value.
 
-	greaterThan(10)
+    greaterThan(10)
 
 The `notGreaterThan` method returns true if the input value is not greater than the expected value.
 
-	notGreaterThan(10)
+    notGreaterThan(10)
 
 ### Less Than Or Equal
 
 The `lessThanOrEqual` method returns true if the input value is less than or equal to the expected value.
 
-	lessThanOrEqual(10)
+    lessThanOrEqual(10)
 
 The `notLessThanOrEqual` method returns true if the input value is not less than or not equal to the expected value.
 
-	notLessThanOrEqual(10)
+    notLessThanOrEqual(10)
 
 ### Greater Than Or Equal
 
 The `greaterThanOrEqual` method returns true if the input value is greater than or equal to the expected value.
 
-	greaterThanOrEqual(10)
+    greaterThanOrEqual(10)
 
 The `notGreaterThanOrEqual` method returns true if the input value is not greater than or not equal to the expected value.
 
-	notGreaterThanOrEqual(10)
+    notGreaterThanOrEqual(10)
 
 ### Starts With
 
 The `startsWith` method returns true if the input value starts with the expected value.
 
-	startsWith('hello')
+    startsWith('hello')
 
 The `notStartsWith` method returns true if the input value doesn't start with the expected value.
 
-	notStartsWith('hello')
+    notStartsWith('hello')
 
 ### Ends With
 
 The `endsWith` method returns true if the input value ends with the expected value.
 
-	endsWith('goodbye')
+    endsWith('goodbye')
 
 The `notEndsWith` method returns true if the input value doesn't end with the expected value.
 
-	notEndsWith('goodbye')
+    notEndsWith('goodbye')
 
 ### License
 

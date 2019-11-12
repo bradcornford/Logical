@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Facade;
 
-class Logical extends Facade {
-
-	protected static function getFacadeAccessor() { return 'logical'; }
-
+class Logical extends Facade
+{
+    protected static function getFacadeAccessor()
+    {
+        return 'logical';
+    }
 }

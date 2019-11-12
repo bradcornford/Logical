@@ -2,6 +2,6 @@
 
 use \Exception;
 
-class LogicalFieldValueException extends Exception {
-
+class LogicalFieldValueException extends Exception
+{
 }

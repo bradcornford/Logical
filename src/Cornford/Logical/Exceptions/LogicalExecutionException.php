@@ -2,6 +2,6 @@
 
 use \Exception;
 
-class LogicalExecutionException extends Exception {
-
+class LogicalExecutionException extends Exception
+{
 }

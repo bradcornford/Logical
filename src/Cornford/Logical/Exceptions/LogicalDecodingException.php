@@ -2,6 +2,6 @@
 
 use \Exception;
 
-class LogicalDecodingException extends Exception {
-
+class LogicalDecodingException extends Exception
+{
 }
