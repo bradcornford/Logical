@@ -23,5 +23,15 @@
             "Cornford\\Logical": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Cornford\\Logical\\LogicalServiceProvider"
+            ],
+            "aliases": {
+                "Mapper": "Cornford\\Logical\\Facades\\LogicalFacade"
+            }
+        }
+    }
 }

@@ -39,7 +39,7 @@ Once this operation completes, the next step is to add the service provider. Ope
 
 The final step is to introduce the facade. Open `app/config/app.php`, and add a new item to the aliases array.
 
-    'Logical'         => 'Cornford\Logical\Facades\Logical',
+    'LogicalFacade'         => 'Cornford\Logical\Facades\Logical',
 
 That's it! You're all set to go.
 

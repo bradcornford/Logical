@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Facade;
 
-class Logical extends Facade
+class LogicalFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {
